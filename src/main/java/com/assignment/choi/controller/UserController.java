@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.client.RestTemplate;
 
 import com.assignment.choi.domain.DepDto;
 import com.assignment.choi.domain.HobbyDto;
@@ -36,19 +38,34 @@ public class UserController {
 	
 	// 사용자 포털
 	@GetMapping("/user_PT")
-	String goUser(Model model, RedirectAttributes redir/*, @ModelAttribute Map<String, Object> mo*/) {
+	String goUser(Model model/*, RedirectAttributes redir, @ModelAttribute Map<String, Object> mo*/) {
 		System.out.println("8082로 이동됨");
 		// 부서 목록
 		List<DepDto> depList = userService.getDepList();
-//		model.addAttribute("depList", depList);
-//		System.out.println("dep갯수: "+depList.size());
+		model.addAttribute("depList", depList);
+		System.out.println("dep갯수: "+depList.size());
 		// 취미 목록
 //		List<HobbyDto> getHobbyList = userService.getHobbyList();
 //		model.addAttribute("getHobbyList", getHobbyList);
 //		System.out.println("취미목록 : "+ getHobbyList.size());
 //		return "/userview";
 		
-		redir.addFlashAttribute("depList", depList);
+//		redir.addFlashAttribute("depList", depList);
+		
+		
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+		body.add("depList", depList);
+////		body.add("age", 25);	
+		
+//		HttpEntity<DepDto> request = new HttpEntity<>("http://localhost:8081/userview", httpHeaders);
+		
+//		HttpEntity<?> requestMessage = new HttpEntity<>(body, httpHeaders);
+//		HttpEntity<String> response = restTemplate.postForEntity("http://localhost:8082/user_PT", requestMessage, String.class);
+		
+		
 		
 //		return mv;
 		System.out.println("depList : "+depList);
