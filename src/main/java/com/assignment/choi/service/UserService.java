@@ -81,7 +81,7 @@ public class UserService {
 		if(result == 0) {
 			return 0; //사용가능
 		} else {
-			return result; //사용불가능
+			return 1; //사용불가능
 		}
 	}
 }

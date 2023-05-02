@@ -34,4 +34,7 @@ public class UserHDtoPK implements Serializable {
 	
 	@Transient
 	private String userId;
+	
+	@Transient
+	private String h_code_id;
 }
