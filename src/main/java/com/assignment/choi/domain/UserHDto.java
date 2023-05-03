@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Table(name="USER_H_TB")
 @Getter
 @Setter
+@ToString
 @IdClass(UserHDtoPK.class)
 public class UserHDto {
 	@Id
@@ -39,10 +41,10 @@ public class UserHDto {
 	@Transient
 	private String userId;
 	
-	@Override
-	public String toString() {
-		return "UserHDto [hobbyDto=" + hobbyDto.getH_code_id() + ", userDto=" + userDto.getUserId() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "UserHDto [hobbyDto=" + hobbyDto.getH_code_id() + ", userDto=" + userDto.getUserId() + "]";
+//	}
 
 	
 }

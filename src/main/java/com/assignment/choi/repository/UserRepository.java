@@ -14,8 +14,8 @@ public interface UserRepository extends JpaRepository<UserDto, String>{
 	@Query("select u from UserDto u where u.userId=:userId")
 	UserDto findByUserDto(@Param("userId")String userId);
 	
-	@Query("select d from DepDto d order by dep_id asc")
-	List<DepDto> findByDto();
+//	@Query("select d from DepDto d order by dep_id asc")
+//	List<DepDto> findByDto();
 	
 	List<UserDto> findByUserNmContaining(String searchKeyword);
 	

@@ -9,6 +9,6 @@ import com.assignment.choi.domain.HobbyDto;
 
 public interface HobbyRepository extends JpaRepository<HobbyDto, String>{
 	
-	@Query("select h from HobbyDto h order by h.h_code_id asc")
-	List<HobbyDto> findAllOrderByAsc();
+//	@Query("select h from HobbyDto h order by h.h_code_id asc")
+//	List<HobbyDto> findAllOrderByAsc();
 }

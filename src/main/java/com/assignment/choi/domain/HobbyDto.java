@@ -10,11 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor(access=AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
 @Table(name="HOBBY_TB")
+@ToString
 @Getter
 @Setter
 public class HobbyDto {
@@ -23,6 +25,6 @@ public class HobbyDto {
 	private String h_code_id; // A
 	
 	@Column(name="h_nm", length=40)
-	private String hNm;   // 등산
+	private String hnm;   // 등산
 	
 }

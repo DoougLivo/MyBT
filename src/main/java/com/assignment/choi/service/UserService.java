@@ -10,6 +10,7 @@ import com.assignment.choi.domain.HobbyDto;
 import com.assignment.choi.domain.UserDto;
 import com.assignment.choi.domain.UserHDto;
 import com.assignment.choi.domain.UserHDtoPK;
+import com.assignment.choi.repository.DepRepository;
 import com.assignment.choi.repository.HobbyRepository;
 import com.assignment.choi.repository.UserHRepository;
 import com.assignment.choi.repository.UserRepository;
@@ -24,6 +25,9 @@ public class UserService {
 	
 	@Autowired
 	HobbyRepository hobbyDao;
+	
+	@Autowired
+	DepRepository depDao;
 	
 	public void insert(UserDto dto) {
 		userDao.save(dto);
@@ -48,10 +52,21 @@ public class UserService {
 	}
 	
 	public List<HobbyDto> getHobbyList() {
-		return hobbyDao.findAllOrderByAsc();
+		return hobbyDao.findAll();
 	}
 	
-	public void insertHobby(UserHDto hDto) {
+	public void insertHobby(String h_code_id, String userId) {
+		UserHDto hDto = new UserHDto();
+		HobbyDto hobby = new HobbyDto();
+		UserDto dto = new UserDto();
+		hDto.setHobbyDto(hobby);
+		hDto.getHobbyDto().setH_code_id(h_code_id);
+		
+		dto.setUserId(userId);
+		hDto.setUserDto(dto);
+//		System.out.println("좋은말 할때 들어가라 "+hDto.getHobbyDto());
+//		System.out.println("좋은말 할때 들어가라2 "+hDto.getUserDto());
+		System.out.println(hDto);
 		userHDao.save(hDto);
 	}
 	
@@ -73,7 +88,7 @@ public class UserService {
 	}
 	
 	public List<DepDto> getDepList() {
-		return userDao.findByDto();
+		return depDao.findAll();
 	}
 	
 	public int idCheck(String userId) {
