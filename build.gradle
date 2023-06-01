@@ -40,6 +40,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
+bootBuildImage {
+ imageName = "mybt"
+}
+
 bootJar {
 	mainClass = 'com.assignment.choi.BtApplication'
 }
